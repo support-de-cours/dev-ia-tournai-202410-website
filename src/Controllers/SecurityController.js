@@ -64,6 +64,19 @@ exports.registration = async (request, response) => {
  * @returns void
  */
 exports.authentication = (request, response) => {
+
+    // Retrieve from data
+
+    // Test the POST request
+
+        // Check Email & Pass
+
+        // Find the User
+
+        // User don't exists -> error
+        // User exists -> Login process
+        
+
     response.render('pages/security/authentication');
 };
 
