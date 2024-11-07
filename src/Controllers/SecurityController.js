@@ -1,4 +1,6 @@
 const { validationResult } = require('express-validator');
+const bcrypt = require('bcrypt');
+const User = require('./../Models/UserModel');
 
 /**
  * 
@@ -6,9 +8,9 @@ const { validationResult } = require('express-validator');
  * @param Response response 
  * @returns void
  */
-exports.registration = (request, response) => {
+exports.registration = async (request, response) => {
     
-    const { 
+    let { 
         firstname, 
         lastname, 
         email, 
@@ -23,13 +25,18 @@ exports.registration = (request, response) => {
         
         // Check if user exists
 
-        // User exists -> send error
+        // User exists -> send error (User already exists)
 
         // User don't exists -> Save user in Database
+        // let user = new User({
+        //     firstname,
+        //     lastname,
+        //     email,
+        //     password
+        // });
+        // await user.save();
 
         // Redirect to /login
-
-
 
         
         console.log(request.body);
@@ -64,13 +71,3 @@ exports.authentication = (request, response) => {
 exports.logout = (request, response) => {
 
 };
-
-
-
-
-
-
-
-
-
-

@@ -26,4 +26,4 @@ app.use(express.urlencoded({extended: true}));
 app.use('/', require(path.join(__dirname, 'config/router')));
 
 // Server Start
-app.listen(PORT, () => console.log(`Serveur en cours d'exécution sur http://localhost:${PORT}`))
+app.listen(PORT, () => console.log(`Serveur en cours d'exécution sur http://localhost:${PORT}`));
