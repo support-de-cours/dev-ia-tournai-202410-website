@@ -4,6 +4,7 @@ const ejs = require('ejs');
 const path = require('path');
 const PORT = process.env.PORT || 3000;
 const app = express();
+const connectDB = require('./config/database');
 
 // Express Settings
 app.set('views', path.join(__dirname, 'templates'));
@@ -14,6 +15,10 @@ app.engine('html', ejs.__express);
 app.use(express.static(path.join(__dirname, 'public'))); // site.com/test.txt
 app.use('/css', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/css'))); // site.com/css/bootstrap.min.css
 app.use('/js', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/js'))); // site.com/css/bootstrap.bundle.min.js
+
+// Connect to Mongo DB
+// --
+connectDB();
 
 // Form treatment
 // -

@@ -19,29 +19,34 @@ exports.registration = async (request, response) => {
     
     const errors = validationResult(request);
 
-
     // Form treatment
     if (request.method === 'POST' && errors.isEmpty()) {
         
         // Check if user exists
-
+        let user = await User.findOne({email});
+        console.log( user );
+        
         // User exists -> send error (User already exists)
+        if (user) {
+            return response.render('pages/security/registration', {
+                errors: [{ msg: "L'utilisateur existe déjà" }],
+                firstname: firstname,
+                lastname: lastname,
+                email: email,
+            });
+        }
 
         // User don't exists -> Save user in Database
-        // let user = new User({
-        //     firstname,
-        //     lastname,
-        //     email,
-        //     password
-        // });
-        // await user.save();
+        user = new User({
+            firstname,
+            lastname,
+            email,
+            password
+        });
+        await user.save();
 
         // Redirect to /login
-
-        
-        console.log(request.body);
-        response.send('Form VALID !!')
-        return;
+        return response.redirect('/login');
     }
     
     response.render('pages/security/registration', {
