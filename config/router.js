@@ -1,8 +1,16 @@
 const express = require('express');
 const router = express.Router();
 
+// Imports controller
+// --
+
+const securityChecker = require('./../src/Checker/SecurityChecker');
+
 const homepageController = require('./../src/Controllers/HomepageController');
+const contactController = require('./../src/Controllers/ContactController');
 const bookController = require('./../src/Controllers/BookController');
+const securityController = require('./../src/Controllers/SecurityController');
+
 
 // Define some routes
 // --
@@ -36,6 +44,18 @@ router.post('/book/:id/edit', bookController.update);
 // delete   site.com/book/42/delete
 router.get('/book/:id/delete', bookController.delete);
 router.post('/book/:id/delete', bookController.delete);
+
+
+// Security router
+// --
+
+router.get('/register', securityController.registration);
+router.post('/register', securityChecker.registration ,securityController.registration);
+
+router.get('/login', securityController.authentication);
+router.post('/login', securityController.authentication);
+
+router.post('/logout', securityController.logout);
 
 
 // Export router

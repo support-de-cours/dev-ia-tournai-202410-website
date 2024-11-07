@@ -5,5 +5,14 @@
  * @param {Response} response 
  */
 exports.index = (request, response) => {
-    response.render('pages/homepage/index');
+
+    let username = "John";
+    const isOk = false;
+    const fruits = ['Pommes', 'Poires', 'Kiwis'];
+
+    response.render('pages/homepage/index', {
+        username: username,
+        isOk: isOk,
+        fruits: fruits
+    });
 }

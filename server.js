@@ -17,6 +17,7 @@ app.use('/js', express.static(path.join(__dirname, 'node_modules/bootstrap/dist/
 
 // Form treatment
 // -
+app.use(express.urlencoded({extended: true}));
 
 // Session management
 // -

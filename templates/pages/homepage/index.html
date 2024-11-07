@@ -1,1 +1,15 @@
-<h1>Hello There !!!!!!</h1>
+<%- include('../../layout/header.html') %>
+
+<h1>Hello <%= username %> !!!!!!</h1>
+
+<% if (isOk) { %>
+    <div>Is OK !!!!</div>
+<% } %>
+
+<ul>
+<% for (let i=0; i<fruits.length; i++) { %>
+    <li><%= fruits[i] %></li>
+<% } %>
+</ul>
+    
+<%- include('../../layout/footer.html') %>
