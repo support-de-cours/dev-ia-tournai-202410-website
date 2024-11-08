@@ -123,5 +123,12 @@ exports.authentication = async (request, response) => {
  * @returns void
  */
 exports.logout = (request, response) => {
+    request.session.destroy( err => {
+        if (err) {
+            console.error('Error during logout:', err);
+            return response.redirect('/'); 
+        }
+    });
 
+    return response.redirect('/login'); 
 };

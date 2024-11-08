@@ -6,6 +6,7 @@ const session = require('express-session');
 const PORT = process.env.PORT || 3000;
 const app = express();
 const connectDB = require('./config/database');
+const security = require('./src/Middlewares/SecurityMiddleware');
 
 // Express Settings
 app.set('views', path.join(__dirname, 'templates'));
@@ -35,7 +36,8 @@ app.use(session({
     cookie: { secure: false }
 }));
 
-// app.use(security.isLogged);
+
+app.use(security.isLogged);
 
 
 // Router

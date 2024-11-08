@@ -5,6 +5,7 @@ const router = express.Router();
 // --
 
 const securityChecker = require('./../src/Checker/SecurityChecker');
+const securityMiddleware = require('../src/Middlewares/SecurityMiddleware');
 
 const homepageController = require('./../src/Controllers/HomepageController');
 const contactController = require('./../src/Controllers/ContactController');
@@ -49,13 +50,13 @@ router.post('/book/:id/delete', bookController.delete);
 // Security router
 // --
 
-router.get('/register', securityController.registration);
-router.post('/register', securityChecker.registration ,securityController.registration);
+router.get('/register', securityMiddleware.isAuthenticated, securityController.registration);
+router.post('/register', securityChecker.registration, securityController.registration);
 
-router.get('/login', securityController.authentication);
+router.get('/login', securityMiddleware.isAuthenticated, securityController.authentication);
 router.post('/login', securityController.authentication);
 
-router.post('/logout', securityController.logout);
+router.get('/logout', /* isGranted ,*/ securityController.logout);
 
 
 // Export router

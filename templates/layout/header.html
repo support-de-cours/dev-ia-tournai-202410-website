@@ -51,8 +51,15 @@
                   <li class="nav-item"><a class="nav-link" href="/contact">Get In Touch</a></li>
                 </ul>
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                  <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
-                  <li class="nav-item"><a class="nav-link" href="/register">Registration</a></li>
+                  
+                  <% if (isLogged) { %>
+                    <li class="nav-item"><span class="nav-link">Welcome, <%= username %>!</span></li>
+                    <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+                  <% } else { %>
+                    <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
+                  <% } %>
+
                 </ul>
               </div>
             </div>
