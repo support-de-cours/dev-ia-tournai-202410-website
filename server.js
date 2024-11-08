@@ -36,7 +36,7 @@ app.use(session({
     cookie: { secure: false }
 }));
 
-
+// Execute a method to create some var to views (isLogged and username)
 app.use(security.isLogged);
 
 

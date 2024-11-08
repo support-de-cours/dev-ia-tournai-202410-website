@@ -1,4 +1,10 @@
-exports.isGranted = () => {
+exports.isGranted = (request, response, next) => {
+    if (request.session.user) {
+        next();
+        return;
+    }
+    
+    return response.redirect('/login');
 }
 
 exports.isAuthenticated = (request, response, next) => {

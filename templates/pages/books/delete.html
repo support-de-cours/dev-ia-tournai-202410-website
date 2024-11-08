@@ -1,0 +1,15 @@
+<%- include('../../layout/header.html') -%>
+
+<h1>Delete a Book !</h1>
+
+<form action="/book/<%= book._id %>/delete" method="post">
+
+    <input type="hidden" name="_method" value="DELETE">
+
+    <p>Confirmer la suppression du livre: <%= book.title %></p>
+
+    <a href="/book/<%= book._id %>" class="btn btn-secondary">Non</a>
+    <button type="submit" class="btn btn-danger">Oui</button>
+</form>
+
+<%- include('../../layout/footer.html') -%>

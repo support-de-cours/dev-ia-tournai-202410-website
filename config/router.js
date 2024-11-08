@@ -32,19 +32,19 @@ router.post('/contact', contactController.treatment);
 router.get('/books', bookController.index)
 
 // create   site.com/book
-router.get('/book', bookController.create);
-router.post('/book', bookController.create);
+router.get('/book', /* middleware isGranted */ bookController.create);
+router.post('/book', /* middleware isGranted */ bookController.create);
 
 // read     site.com/book/42
 router.get('/book/:id', bookController.read);
 
 // update   site.com/book/42/edit
-router.get('/book/:id/edit', bookController.update);
-router.post('/book/:id/edit', bookController.update);
+router.get('/book/:id/edit', /* middleware isGranted */ bookController.update);
+router.post('/book/:id/edit', /* middleware isGranted */ bookController.update);
 
 // delete   site.com/book/42/delete
-router.get('/book/:id/delete', bookController.delete);
-router.post('/book/:id/delete', bookController.delete);
+router.get('/book/:id/delete', /* middleware isGranted */ bookController.delete);
+router.post('/book/:id/delete', /* middleware isGranted */ bookController.delete);
 
 
 // Security router
