@@ -109,8 +109,8 @@ exports.authentication = async (request, response) => {
         // Login process - part 2 : Create user session
         user.password = null;
         request.session.user = user;
-        // return request.redirect( request.get('Referrer') || '/' ); 
-        return response.redirect( '/' ); 
+        return response.redirect( request.get('Referrer') || '/' ); 
+        // return response.redirect( '/' ); 
     }
 
     response.render('pages/security/authentication');
