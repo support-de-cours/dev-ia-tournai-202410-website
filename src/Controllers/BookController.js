@@ -6,6 +6,19 @@ exports.index = (request, response) => {
 }
 
 exports.create = (request, response) => {
+
+    // Retrieve form data
+
+    // Errors / validation
+
+    // New Book (variable)
+
+    // Check if POST && No Error
+        // New Book entity
+        // Book save
+        // Redirect
+
+    // Show form
     response.render('pages/books/create')
 }
 
