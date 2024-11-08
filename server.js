@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const ejs = require('ejs');
 const path = require('path');
+const session = require('express-session');
 const PORT = process.env.PORT || 3000;
 const app = express();
 const connectDB = require('./config/database');
@@ -26,6 +27,16 @@ app.use(express.urlencoded({extended: true}));
 
 // Session management
 // -
+// Create session
+app.use(session({
+    secret: process.env.APP_SECRET,
+    resave: false,
+    saveUninitialized: true, 
+    cookie: { secure: false }
+}));
+
+// app.use(security.isLogged);
+
 
 // Router
 app.use('/', require(path.join(__dirname, 'config/router')));

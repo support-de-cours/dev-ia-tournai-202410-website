@@ -63,19 +63,55 @@ exports.registration = async (request, response) => {
  * @param Response response 
  * @returns void
  */
-exports.authentication = (request, response) => {
+exports.authentication = async (request, response) => {
 
-    // Retrieve from data
+    // Retrieve form data
+    const {
+        email,
+        password
+    } = request.body;
+
+    const errors = [];
 
     // Test the POST request
-
+    if (request.method === 'POST')
+    {
         // Check Email & Pass
-
+        if (!email || !password) {
+            errors.push({ msg: "Please enter both email and password." });
+            return response.render('pages/security/authentication', {
+                errors: errors,
+            });
+        }
+    
         // Find the User
-
+        let user = await User.findOne({email});
+    
         // User don't exists -> error
+        if (!user) {
+            errors.push({ msg: "Invalid credentials" });
+            return response.render('pages/security/authentication', {
+                errors: errors,
+            });
+        }
+
         // User exists -> Login process
-        
+        // Login process - part 1 : Verify password
+        const isMatch = await bcrypt.compare(password, user.password)
+
+        if (!isMatch) {
+            errors.push({ msg: "Invalid credentials" });
+            return response.render('pages/security/authentication', {
+                errors: errors,
+            });
+        }
+
+        // Login process - part 2 : Create user session
+        user.password = null;
+        request.session.user = user;
+        // return request.redirect( request.get('Referrer') || '/' ); 
+        return response.redirect( '/' ); 
+    }
 
     response.render('pages/security/authentication');
 };

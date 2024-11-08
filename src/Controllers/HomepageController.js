@@ -6,9 +6,15 @@
  */
 exports.index = (request, response) => {
 
-    let username = "John";
+    let username = "BOBBY";
     const isOk = false;
     const fruits = ['Pommes', 'Poires', 'Kiwis'];
+
+    console.log(request.session.user);
+    
+    if (request.session.user) {
+        username = request.session.user.firstname
+    }
 
     response.render('pages/homepage/index', {
         username: username,
