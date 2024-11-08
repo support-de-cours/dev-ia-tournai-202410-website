@@ -3,7 +3,8 @@ const express = require('express');
 const ejs = require('ejs');
 const path = require('path');
 const session = require('express-session');
-const PORT = process.env.PORT || 3000;
+// const PORT = process.env.PORT || 3000;
+const PORT = require('./src/Utils/port');
 const app = express();
 const connectDB = require('./config/database');
 const security = require('./src/Middlewares/SecurityMiddleware');
@@ -45,3 +46,4 @@ app.use('/', require(path.join(__dirname, 'config/router')));
 
 // Server Start
 app.listen(PORT, () => console.log(`Serveur en cours d'exécution sur http://localhost:${PORT}`));
+exports.port = PORT;
